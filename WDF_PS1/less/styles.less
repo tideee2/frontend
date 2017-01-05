@@ -1,0 +1,123 @@
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+@body-color: rgb(56,56,56);
+@form-background: rgb(43,43,43);
+@input-background: rgb(62,62,62);
+@input-text-color: rgb(223,226,226);
+@red: rgb(207,37,58);
+@text-color: rgb(124,124,124);
+@form-width: 300px;
+@light-red: rgb(255,37,58);
+@screen-width: ~"(max-width: 400px)";
+
+.user-font(@size, @color){
+	font-family: 'Lato', sans-serif;
+	font-size: @size;
+	color: @color;
+}
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+body{
+	background: @body-color;
+}
+.register{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	.user-font(10px, @text-color);
+	margin: 100px auto;
+	width: @form-width;
+	background: @form-background;
+	padding: 50px 20px;
+	@media @screen-width{
+		width: 100%;
+		height: 100%;
+		padding:10px;
+		margin: 20px 0;
+	}
+	.logo{
+		font-size: 3em;
+	}
+	.description{
+		margin:15px 0;
+
+	}
+	.logo, .description{
+		text-align: center;
+	}
+	input[type="text"]{
+		background: @input-background;
+		color: @input-text-color;
+		border: none;
+		outline: none;
+		font-weight: normal;
+		font-size: 1.4em;
+		font-family: 'Lato', sans-serif;
+		width: 100%;
+		padding: 10px;
+		margin: 1px 0;
+		letter-spacing: 0.5px;
+		overflow: hidden;
+		&::-webkit-input-placeholder {
+			color: @text-color;
+			transition: transform 0.5s ease;
+			overflow: hidden;
+
+		}
+		&::-moz-placeholder{
+			color: @text-color;
+			transition: opacity 0.5s ease;
+		}
+		&:-moz-placeholder     {
+			color: @text-color;
+			transition: opacity 0.5s ease;
+		}
+		&:-ms-input-placeholder{
+			color: @text-color;
+			transition: opacity 0.5s ease;
+		}
+		&:focus{
+			&::-webkit-input-placeholder {
+				transform: translateX(100px);
+			}
+			&::-moz-placeholder{
+				transform: translateX(100px);
+			}
+			&:-moz-placeholder     {
+				transform: translateX(100px);
+			}
+			&:-ms-input-placeholder{
+				transform: translateX(100px);
+			}
+		}
+	}
+
+	a{
+		display: block;
+		text-align: right;
+		color: @text-color;
+		transition: all 0.5s ease;
+		&:hover{
+			color: @red;
+		}
+	}
+	input[type="submit"]{
+		background: @red;
+		width: 100%;
+		border: none;
+		margin-top: 20px;
+		padding: 10px;
+		color: @input-text-color;
+		outline: none;
+		cursor: pointer;
+		transition: all 0.7s ease;
+		&:hover{
+			background: @light-red;
+		}
+	}
+}

@@ -1,0 +1,23 @@
+.ok {
+  font-family: 20px;
+}
+.ok .no {
+  color: yellow;
+}
+body {
+  background-color: red;
+}
+body p {
+  color: green;
+}
+body a {
+  text-decoration: none;
+  font-style: italic;
+}
+body h1 {
+  color: yellow;
+  border: 11px solid gray;
+  display: inline-block;
+  padding: 10px;
+  margin: 0 auto;
+}

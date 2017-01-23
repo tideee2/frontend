@@ -1,9 +1,5 @@
-.ok {
-  font-family: 20px;
-}
-.ok .no {
-  color: yellow;
-}
+@import url(app/libs/magnific-popup/dist/magnific-popup.css);
+
 body {
   background-color: red;
 }

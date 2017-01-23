@@ -1,56 +1,65 @@
-var
-	gulp = require('gulp'),
-	less = require('gulp-less'),
-	path = require('path'),
-	browserSync = require('browser-sync'),
-	concat = require('gulp-concat'),
-	uglify = require('gulp-uglifyjs'),
-	cssnano = require('gulp-cssnano'),
-	rename = require('gulp-rename');
+var gulp = require('gulp-help')(require('gulp'));
+var	browserSync = require('browser-sync');
+var $ = require('gulp-load-plugins')({lazy: true});
+var config = require('./gulp.config')();
 
-gulp.task('mytask', function(){
-	return gulp.src('source-files')
-		.pipe(plugin())
-		.pipe(gulp.dest('folder)'))
+gulp.task('inject', 'Inject css  and js files to the head section of index.html', function() {
+	return gulp.src(config.index)
+		.pipe($.inject(gulp.src(
+			[config.buildCss + '*.css', 
+			config.buildJs + '*.js',
+			config.bowerCss, 
+			config.bowerJs],
+		 {read: false})))
+		.pipe(gulp.dest(__dirname));
 });
 
-gulp.task('less', function(){
-	return gulp.src('app/less/**/*.less')
-		.pipe(less({
-			paths: [path.join(__dirname, 'less', 'includes')]
-		}))
-		.pipe(gulp.dest('app/css'))
-		.pipe(browserSync.reload({stream: true}));
+gulp.task('inject-min-css', 'Inject min.css and min.js files to the head section of index.html', function() {
+	return gulp.src(config.index)
+		.pipe($.inject(gulp.src(
+			['app/css/*.css',
+			'app/js/*.js',
+			config.bowerCss, 
+			config.bowerJs],
+			 {read: false}), {addRootSlash: false}))
+		.pipe(gulp.dest(__dirname));
 });
 
-gulp.task('browser-sync',function(){
+gulp.task('less', 'Convert less to css file and put it to the build folder', function() {
+	return gulp.src(config.styles + '*.less')
+		.pipe($.less())
+		.pipe($.concat(config.name + '.css'))
+		.pipe(gulp.dest(config.buildCss));
+		// .pipe(browserSync.reload({stream: true}));
+});
+
+gulp.task('minify-css', 'Minify css', ['less'], function() {
+	return gulp.src(config.buildCss+'*.css')
+		.pipe($.cssnano())
+		.pipe($.concat(config.buildMinCss))
+		.pipe(gulp.dest(config.root + '/css'));
+});
+
+gulp.task('browser-sync', 'Browser-sync configuration', function() {
 	browserSync({
 		server: {
-			baseDir: 'app'
+			baseDir: config.root
 		},
-		notify: false
+		notify: true
 	})
 });
 
-gulp.task('scripts', function(){
-	return gulp.src([
-		'app/libs/jquery/dist/jquery.min.js',
-		'app/libs/magnific-popup/dist/jquery.magnific-popup.min.js'
-		])
-		.pipe(concat('libs.min.js'))
-		.pipe(uglify())
-		.pipe(gulp.dest('app/js'));
+gulp.task('scripts', 'minimize and obfuscate js file', function(){
+	return gulp.src(config.buildJs+'*.js')
+		.pipe($.obfuscate())
+		.pipe($.concat(config.buildMinJs))
+		.pipe($.uglifyjs())
+		.pipe(gulp.dest(config.root + 'js/'));
 });
 
-gulp.task('css-libs', ['less'], function(){
-	return gulp.src('app/css/libs.css')
-	.pipe(cssnano)
-	.pipe(rename({suffix: '.min'}))
-	.pipe(gulp.dest('app/css'));
-});
+gulp.task('serve', 'Development build. Watch less files for changes.', ['browser-sync', 'less', 'scripts', 'inject'], function() {
+	gulp.watch(config.styles + '*.less', ['less', browserSync.reload]);
+	gulp.watch(config.buildJs + '*.js', ['scripts', browserSync.reload]);
+}); 
 
-gulp.task('watch', ['browser-sync', 'css-libs','scripts'],function(){
-	gulp.watch('app/less/**/*.less',['less']);
-	gulp.watch('app/*.html',browserSync.reload);
-	gulp.watch('app/js/**/*.js',browserSync.reload);
-});
+gulp.task('build', 'Production build', ['less', 'minify-css', 'scripts', 'inject-min-css']);

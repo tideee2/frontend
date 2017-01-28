@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+
+	<link rel="stylesheet/less" type="text/css" href="less/main.less" />
+<script>
+  less = {
+    env: "development"
+  };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.min.js"></script>
+</head>
+<body>
+<div class="row section">
+  <div class="col">
+    <!-- Modal Trigger -->
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal1" data-target="modal1">Modal</a>
+    <p>You have to include jQuery and Materialize JS + CSS for the modal to work. You can include it from <a href="http://materializecss.com/getting-started.html">CDN (getting started)</a>.
+  </div>
+</div>
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>
+	<nav class="blue lighten-4 blue-text text-darken-2">
+		<div class="nav-wrapper container">
+			<div class="row">
+				<div class="col s12 m3 left">
+					<a href="#" class="logo-wrap">
+						<img src="images/logo2.png" alt="logo" class="responsive-img">
+					</a>
+				</div>
+				<div class="col s12 m6 center">
+					<h1>Superhero dashboard</h1>
+				</div>
+				<div class="col s12 m3">
+					<div class='user-inf right valign-wrapper'>
+						<img class="responsive-img valign" src="images/spiderman-face.png" alt="userface">
+						<span class="valign blue-text text-darken-2">Spiderman</span>
+						<a href="#" class="valign" alt="dropdown-menu">
+							<i class="material-icons dropdown-button blue-text text-darken-2" data-activates='dropdown1'>settings</i>
+						</a>
+						<ul id='dropdown1' class='dropdown-content'>
+							<li class="lighten-4 blue-text text-darken-2"><a href="#!">My page <i class="material-icons">assignment_ind</i></a></li>
+							<li class="lighten-4 blue-text text-darken-2"><a href="#!">Edit profile <i class="material-icons">mode_edit</i></a></li>
+							<li class="divider"></li>
+							<li class="lighten-4 blue-text text-darken-2"><a href="#!">Exit <i class="material-icons">settings_power</i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div class="section card-section light-blue lighten-5">
+		<div class="container">
+			<div class="row">
+				<div class="col l2">
+					<div class="card horizontal blue lighten-4 blue-text text-darken-2">
+						<div class="card-image valign-wrapper">
+							<i class="material-icons valign">supervisor_account</i>
+						</div>
+						<div class="card-stacked">
+        					<div class="card-content">
+								<span class="card-text">Visitors</span>
+								<span class="card-digit">20202</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col l2">
+					<div class="card horizontal blue lighten-4 blue-text text-darken-2">
+						<div class="card-image valign-wrapper">
+							<i class="material-icons valign">shopping_basket</i>
+						</div>
+						<div class="card-stacked">
+        					<div class="card-content">
+								<span class="card-text">Shares</span>
+								<span class="card-digit">20202</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col l2">
+					<div class="card horizontal blue lighten-4 blue-text text-darken-2">
+						<div class="card-image valign-wrapper">
+							<i class="material-icons valign">shopping_cart</i>
+						</div>
+						<div class="card-stacked">
+        					<div class="card-content">
+								<span class="card-text">Orders</span>
+								<span class="card-digit">20202</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col l2">
+					<div class="card horizontal blue lighten-4 blue-text text-darken-2">
+						<div class="card-image valign-wrapper">
+							<i class="material-icons valign">message</i>
+						</div>
+						<div class="card-stacked">
+        					<div class="card-content">
+								<span class="card-text">Messages</span>
+								<span class="card-digit">20202</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col l2">
+					<div class="card horizontal blue lighten-4 blue-text text-darken-2">
+						<div class="card-image valign-wrapper">
+							<i class="material-icons valign">warning</i>
+						</div>
+						<div class="card-stacked">
+        					<div class="card-content">
+								<span class="card-text">Falldowns</span>
+								<span class="card-digit">20202</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section user-section light-blue lighten-5">
+		<div class="container">
+			<div class="row">
+				<div class="col s9">
+					<div class="user-header">
+						<a class="blue lighten-1 blue-text text-lighten-4 waves-effect waves-light btn-flat" href="#">Users</a>
+						<a class="blue lighten-1 blue-text text-lighten-4 waves-effect waves-light btn-flat" href="#">Add new</a>
+						<div class="input-field inline">
+							<input id="search" type="text" class="validate">
+							<label for="search" class="blue-text text-darken-2">Search</label>
+							<i class="material-icons prefix blue-text text-darken-2">search</i>
+						</div>
+					</div>
+					<table class="highlight responsive-table bordered blue-text text-darken-3">
+						<thead>
+							<tr>
+								<th data-field="Fullname">Fullname</th>
+								<th data-field="Username">Username</th>
+								<th data-field="Created">Created</th>
+								<th data-field="Last_login">Last login</th>
+								<th data-field="E-mails">E-mails</th>
+								<th data-field="Actions">Actions</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td>Tony Stark</td>
+								<td>Ironman</td>
+								<td>12.10.2016</td>
+								<td>11.11.2016</td>
+								<td>ironman@gmail.com</td>
+								<td>
+									<a href="#modal1" class="modal-open">
+										<i class="material-icons">mode_edit</i>
+									</a>
+									<i class="material-icons">delete</i>
+								</td>
+							</tr>
+							<tr>
+								<td>Tony Stark</td>
+								<td>Ironman</td>
+								<td>12.10.2016</td>
+								<td>11.11.2016</td>
+								<td>ironman@gmail.com</td>
+								<td>
+									<i class="material-icons">mode_edit</i>
+									<i class="material-icons">delete</i>
+								</td>
+							</tr>
+							<tr>
+								<td>Tony Stark</td>
+								<td>Ironman</td>
+								<td>12.10.2016</td>
+								<td>11.11.2016</td>
+								<td>ironman@gmail.com</td>
+								<td>
+									<i class="material-icons">mode_edit</i>
+									<i class="material-icons">delete</i>
+								</td>
+							</tr>
+							<tr>
+								<td>Tony Stark</td>
+								<td>Ironman</td>
+								<td>12.10.2016</td>
+								<td>11.11.2016</td>
+								<td>ironman@gmail.com</td>
+								<td>
+									<i class="material-icons">mode_edit</i>
+									<i class="material-icons">delete</i>
+								</td>
+							</tr>
+						 </tbody>
+					</table>
+					<div id="modal1" class="modal">
+						<div class="modal-content">
+							<h4>Modal Header</h4>
+							<p>A bunch of text</p>
+						</div>
+						<div class="modal-footer">
+							<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+						</div>
+					</div>
+				</div>
+				<div class="col s3">
+					<ul class="collapsible" data-collapsible="accordion">
+						<li>
+							<div class="collapsible-header blue lighten-4 blue-text text-darken-2"><i class="material-icons">filter_drama</i>Weather</div>
+							<div class="collapsible-body blue-text text-darken-2"><span>Lorem ipsum dolor sit amet.</span></div>
+						</li>
+						<li>
+						<div class="collapsible-header blue lighten-4 blue-text text-darken-2"><i class="material-icons">schedule</i>Time</div>
+						<div class="collapsible-body blue-text text-darken-2"><span>Lorem ipsum dolor sit amet.</span></div>
+						</li>
+						<li>
+						<div class="collapsible-header blue lighten-4 blue-text text-darken-2"><i class="material-icons">av_timer</i>Date</div>
+						<div class="collapsible-body blue-text text-darken-2"><span>Lorem ipsum dolor sit amet.</span></div>
+						</li>
+						<li>
+						<div class="collapsible-header blue lighten-4 blue-text text-darken-2"><i class="material-icons">swap_vert</i>Exchange</div>
+						<div class="collapsible-body blue-text text-darken-2"><span>Lorem ipsum dolor sit amet.</span></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

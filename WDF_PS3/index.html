@@ -16,23 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.min.js"></script>
 </head>
 <body>
-<div class="row section">
-  <div class="col">
-    <!-- Modal Trigger -->
-    <a class="waves-effect waves-light btn modal-trigger" href="#modal1" data-target="modal1">Modal</a>
-    <p>You have to include jQuery and Materialize JS + CSS for the modal to work. You can include it from <a href="http://materializecss.com/getting-started.html">CDN (getting started)</a>.
-  </div>
-</div>
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-  <div class="modal-content">
-    <h4>Modal Header</h4>
-    <p>A bunch of text</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-  </div>
-</div>
+
 	<nav class="blue lighten-4 blue-text text-darken-2">
 		<div class="nav-wrapper container">
 			<div class="row">
@@ -169,7 +153,9 @@
 									<a href="#modal1" class="modal-open">
 										<i class="material-icons">mode_edit</i>
 									</a>
-									<i class="material-icons">delete</i>
+									<a href="#modal2" class="modal-open">
+										<i class="material-icons">delete</i>
+									</a>
 								</td>
 							</tr>
 							<tr>
@@ -179,8 +165,26 @@
 								<td>11.11.2016</td>
 								<td>ironman@gmail.com</td>
 								<td>
-									<i class="material-icons">mode_edit</i>
-									<i class="material-icons">delete</i>
+									<a href="#modal1" class="modal-open">
+										<i class="material-icons">mode_edit</i>
+									</a>									
+									<a href="#modal2" class="modal-open">
+										<i class="material-icons">delete</i>
+									</a>								</td>
+							</tr>
+							<tr>
+								<td>Tony Stark</td>
+								<td>Ironman</td>
+								<td>12.10.2016</td>
+								<td>11.11.2016</td>
+								<td>ironman@gmail.com</td>
+								<td>
+									<a href="#modal1" class="modal-open">
+										<i class="material-icons">mode_edit</i>
+									</a>	
+									<a href="#modal2" class="modal-open">
+										<i class="material-icons">delete</i>
+									</a>									
 								</td>
 							</tr>
 							<tr>
@@ -190,30 +194,47 @@
 								<td>11.11.2016</td>
 								<td>ironman@gmail.com</td>
 								<td>
-									<i class="material-icons">mode_edit</i>
-									<i class="material-icons">delete</i>
-								</td>
-							</tr>
-							<tr>
-								<td>Tony Stark</td>
-								<td>Ironman</td>
-								<td>12.10.2016</td>
-								<td>11.11.2016</td>
-								<td>ironman@gmail.com</td>
-								<td>
-									<i class="material-icons">mode_edit</i>
-									<i class="material-icons">delete</i>
+									<a href="#modal1" class="modal-open">
+										<i class="material-icons">mode_edit</i>
+									</a>
+									<a href="#modal2" class="modal-open">
+										<i class="material-icons">delete</i>
+									</a>
 								</td>
 							</tr>
 						 </tbody>
 					</table>
 					<div id="modal1" class="modal">
 						<div class="modal-content">
-							<h4>Modal Header</h4>
-							<p>A bunch of text</p>
+							<h4>Editing element</h4>
+							<div class="input-field">
+								<i class="material-icons prefix">account_circle</i>
+								<input id="username" type="text" class="validate">
+								<label for="username">Username</label>
+							</div>
+							<div class="input-field">
+								<i class="material-icons prefix">email</i>
+								<input id="email" type="text" class="validate">
+								<label for="email">Username</label>
+							</div>
+							<div class="input-field">
+								<i class="material-icons prefix">vpn_key</i>
+								<input id="password" type="text" class="validate">
+								<label for="password">Password</label>
+							</div>
 						</div>
 						<div class="modal-footer">
 							<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+						</div>
+					</div>
+					<div id="modal2" class="modal">
+						<div class="modal-content">
+							<h4>Deleting element</h4>
+							<p>Are realy want delete user?</p>
+						</div>
+						<div class="modal-footer">
+							<a href="#!" id="delete-el" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+							<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat cancel">Cancel</a>
 						</div>
 					</div>
 				</div>

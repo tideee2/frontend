@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			box-sizing: border-box;
+		}
+		#main{
+			border: 1px solid #000;
+			width: 600px;
+			height: auto;
+			overflow: auto;
+			margin: 100px auto;
+		}
+		.panel{
+			width: 50%;
+			float: left;
+		}
+		.panel label{
+			float: right;
+			text-align: left;
+		}
+	</style>
+</head>
+<body>
+	<div id="main">
+		<div class="panel">
+			<label for="name1"> name<input type="text" id="name1"></label>
+			<label for="element1"> element<input type="text" id="element1"></label>
+			<label for="exp1"> experience<input type="text" id="exp1"></label>
+		</div>
+		<div class="panel">
+			<label for="name2"> name<input type="text" id="name1"></label>
+			<label for="element2"> element<input type="text" id="element1"></label>
+			<label for="exp2"> experience<input type="text" id="exp1"></label>			
+		</div>
+	</div>
+	<script>
+		function Pokemon(name, element, exp){
+			var
+				scheme = ["fire", "wood", "electricity", "water"];
+			this.name = name || "none";
+			this.element = element || "fire";
+			this.exp = exp || 0;
+
+			var compare = function(pok1, pok2){
+				var
+					index1 = scheme.indexOf(pok1.element),
+					index2 = scheme.indexOf(pok2.element);
+				if (Math.abs(index1 - index2) == 1 || Math.abs(index1 - index2) == 3){
+					if (index1 < index2 || index1+index2 == scheme.length-1){console.log(1);
+						return {
+							"winner": pok1,
+							"looser": pok2
+							};
+					}
+					else{console.log(2);
+						return {
+							"winner": pok2,
+							"looser": pok1
+							};
+					}
+				}
+				else{console.log(3);
+					return (Math.round(Math.random())) ? {
+							"winner": pok1,
+							"looser": pok2
+							} : 
+							{
+							"winner": pok2,
+							"looser": pok1
+							};
+				}
+			}
+			Pokemon.fight = function(pok1, pok2){
+				var
+					result = compare(pok1, pok2);
+					console.log(result);
+				result.winner.exp += 1000;
+				result.looser = null;
+				console.log("winner: " + result.winner.element + ":" + result.winner.name);
+			}
+		}
+		var p = new Pokemon("p","wood",1);
+		var d = new Pokemon("d","fire",1);
+
+		Pokemon.fight(p,d);
+		
+
+	</script>
+</body>
+</html>

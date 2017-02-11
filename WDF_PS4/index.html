@@ -13,37 +13,128 @@
 			height: auto;
 			overflow: auto;
 			margin: 100px auto;
+			display: flex;
 		}
 		.panel{
 			width: 50%;
-			float: left;
+			afloat: left;
+			border:1px solid #000;
 		}
 		.panel label{
-			float: right;
+			afloat: right;
 			text-align: left;
+		}
+		h2{
+			text-align: center;
+		}
+		button{
+			display: block;
 		}
 	</style>
 </head>
 <body>
+	<p id="message">
+		
+	</p>
 	<div id="main">
-		<div class="panel">
-			<label for="name1"> name<input type="text" id="name1"></label>
-			<label for="element1"> element<input type="text" id="element1"></label>
-			<label for="exp1"> experience<input type="text" id="exp1"></label>
+		<div class="panel left">
+			<h2>First pokemon</h2>
+			<label for="name1"> name<input type="text" id="name1" value="vasya"></label>
+			<label for="element1"> element<input type="text" id="element1" value="wood"></label>
+			<label for="exp1"> experience<input type="text" id="exp1" value="1000"></label>
+			<p id="lvl1"></p>
+			<button id="createFirst">Create!</button>
 		</div>
-		<div class="panel">
-			<label for="name2"> name<input type="text" id="name1"></label>
-			<label for="element2"> element<input type="text" id="element1"></label>
-			<label for="exp2"> experience<input type="text" id="exp1"></label>			
+		<div class="panel right">
+			<h2>Second pokemon</h2>
+			<label for="name2"> name<input type="text" id="name2" value="petya"></label>
+			<label for="element2"> element<input type="text" id="element2" value="electricity"></label>
+			<label for="exp2"> experience<input type="text" id="exp2" value="1000"></label>
+			<p id="lvl2"></p>
+			<button id="createSecond">Create!</button>
 		</div>
+		<button id="fight">Lets fight begin!</button>
 	</div>
 	<script>
+	var
+		scheme = ["fire", "wood", "electricity", "water"];
+	var
+		pokemon1,
+		pokemon2,
+		fightResult;
+	function getData(n){
+		return {
+			name: document.getElementById("name" + n).value,
+			exp: document.getElementById("exp" + n).value,
+			element: document.getElementById("element" + n).value
+		}
+	}
+	function setData(n, obj){
+		document.getElementById("name" + n).value = obj.name;
+		document.getElementById("exp" + n).value = obj.exp;
+		document.getElementById("element" + n).value = obj.element;
+		document.getElementById("element" + n).setAttribute("disabled", true);
+		document.getElementById("name" + n).setAttribute("disabled", true);
+		document.getElementById("exp" + n).setAttribute("disabled", true);
+	}
+	document.getElementById("fight").addEventListener("click",function(){
+		if (pokemon1 == null){
+			document.getElementById('message').innerHTML = "Please create first pokemon";
+			return 0;
+		}
+		if (pokemon2 == null){
+			document.getElementById('message').innerHTML = "Please create second pokemon";
+			return 0;
+		}
+		fightResult = Pokemon.fight(pokemon1, pokemon2);
+		if (!fightResult.error) {
+			console.log("The winner is " + fightResult.winner.name);
+			pokemon1 = fightResult.winner;
+			pokemon2 = null;
+			setData(1, pokemon1);
+			document.getElementById('message').innerHTML = "The winner is " + fightResult.winner.name + ((fightResult.winner.lvlup) ? " level increased": "");
+
+		}
+		else{
+			document.getElementById('message').innerHTML = winner.error;
+		}
+		
+	});
+	document.getElementById("createFirst").addEventListener("click",function(){
+		var
+			data = getData(1);
+		console.log(data);
+		pokemon1 = new Pokemon(data.name, data.element, data.exp);
+		document.getElementById('lvl1').innerHTML = "lvl = " + pokemon1.lvl;
+	});
+	document.getElementById("createSecond").addEventListener("click",function(){
+		var
+			data = getData(2);
+		pokemon2 = new Pokemon(data.name, data.element, data.exp);
+		document.getElementById('lvl2').innerHTML = "lvl = " + pokemon2.lvl;
+	});
 		function Pokemon(name, element, exp){
 			var
 				scheme = ["fire", "wood", "electricity", "water"];
 			this.name = name || "none";
 			this.element = element || "fire";
-			this.exp = exp || 0;
+			this.exp = +exp || 0;
+			this.lvl = Math.floor(exp / 1000);
+
+			this.update = function(){
+				this.exp += 500;
+				if (this.lvl < Math.floor(this.exp/1000)){
+					this.lvlup = 1;
+				}
+				else{
+					this.lvlup = 0;
+				}
+				this.lvl = Math.floor(this.exp/1000);
+			}
+
+			this.die = function(){
+				//this = null;
+			}
 
 			var compare = function(pok1, pok2){
 				var
@@ -74,20 +165,26 @@
 							};
 				}
 			}
+
 			Pokemon.fight = function(pok1, pok2){
+				if (pok1 ==null || pok2 == null){
+					return {
+						"error": "one, or two pokemon doesnt exist"
+					}
+				}
 				var
-					result = compare(pok1, pok2);
-					console.log(result);
-				result.winner.exp += 1000;
+					result = (pok1.lvl == pok2.lvl) ? compare(pok1, pok2) : (pok1.lvl > pok2.lvl) ? {"winner": pok1, "looser": pok2} : {"winner": pok2, "looser": pok1};
+				result.winner.update();
 				result.looser = null;
-				console.log("winner: " + result.winner.element + ":" + result.winner.name);
+				return result;
 			}
 		}
-		var p = new Pokemon("p","wood",1);
-		var d = new Pokemon("d","fire",1);
+		var p = new Pokemon("petya","wood",1600);
+		var d = new Pokemon("drrr","wood",111);
 
-		Pokemon.fight(p,d);
+		var x = Pokemon.fight(p,d);
 		
+
 
 	</script>
 </body>

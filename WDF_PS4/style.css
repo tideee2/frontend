@@ -1,0 +1,26 @@
+*{
+			box-sizing: border-box;
+		}
+		#main{
+			border: 1px solid #000;
+			width: 600px;
+			height: auto;
+			overflow: auto;
+			margin: 100px auto;
+			display: flex;
+		}
+		.panel{
+			width: 50%;
+			afloat: left;
+			border:1px solid #000;
+		}
+		.panel label{
+			afloat: right;
+			text-align: left;
+		}
+		h2{
+			text-align: center;
+		}
+		button{
+			display: block;
+		}
